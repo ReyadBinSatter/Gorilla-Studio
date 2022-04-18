@@ -1,14 +1,46 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useNavigate, Link } from 'react-router-dom';
+import auth from './../../firebase.init';
 
 const Login = () => {
+
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useSignInWithEmailAndPassword(auth);
+
+
+    const emailRef = useRef('');
+    const passwordRef = useRef('');
+    const navigate = useNavigate();
+
+if(user){
+    navigate('/home')
+}
+
+    const handleSubmit = event=> {
+        event.preventDefault();
+        const email = emailRef.current.value;
+        const password = passwordRef.current.value;
+        signInWithEmailAndPassword(email, password)
+
+    }
+
+    const gotoSignup = event =>{
+            navigate('/signup')
+    }
+
     return (
-        <div>
-            <h1>can you login</h1>
-            <Form>
+        <div className='container w-50 mx-auto'>
+            <h1>Please Login</h1>
+            <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" />
+                    <Form.Control ref={emailRef} type="email" placeholder="Enter email" required/>
                     <Form.Text className="text-muted">
                         We'll never share your email with anyone else.
                     </Form.Text>
@@ -16,7 +48,7 @@ const Login = () => {
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" />
+                    <Form.Control ref={passwordRef} type="password" placeholder="Password" required/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     <Form.Check type="checkbox" label="Check me out" />
@@ -25,6 +57,7 @@ const Login = () => {
                     Submit
                 </Button>
             </Form>
+            <p>If you are a new user <Link to="/signup" className='text-danger text-decoration-none' onClick={gotoSignup}>Please Signup</Link></p>
         </div>
     );
 };
