@@ -2,21 +2,21 @@
     {
       "id": 1,
       "name": "Rofik Ahmed",
-
+      "time": 20,
       "description": "I got some beautiful pictures."
 
     },
     {
       "id": 2,
       "name": "Sultana Nila",
-
+      "time":45,
       "description": "Your pictures are beautiful."
 
     },
     {
       "id": 3,
       "name": "kuddus Boyati",
-
+      "time": 10,
       "description": "Nice Pictures."
 
     }  
