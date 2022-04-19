@@ -53,7 +53,7 @@ const Signup = () => {
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control ref={passwordRef} type="password" placeholder="Password(atleast 6 character)" required />
+                    <Form.Control ref={passwordRef} type="password" placeholder="Password(At least 6 character)" required />
                 </Form.Group>
 
                 <Button variant="primary" type="submit">

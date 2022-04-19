@@ -1,0 +1,23 @@
+[
+    {
+      "id": 1,
+      "name": "Standard Package",
+      "price": 100,
+      "description": "I will provide you 20 raw & high quality picture files.",
+      "img": "./img/pack01.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Gold Package",
+      "price": 200,
+      "description": "I will provide you 50 raw & high quality picture files.",
+      "img": "./img/pack02.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Platinum Package",
+      "price": 500,
+      "description": "I will provide you 100 raw & high quality picture files.",
+      "img": "./img/pack03.jpg"
+    }  
+]

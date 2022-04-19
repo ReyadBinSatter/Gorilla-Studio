@@ -7,6 +7,7 @@ import About from './Pages/About/About';
 import Home from './Pages/Home/Home/Home';
 import Login from './Pages/Login/Login';
 import Signup from './Pages/Login/Signup';
+import ServiceDetail from './Pages/ServiceDetail/ServiceDetail';
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
         <Route path="/gallery" element={<About></About>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/signup" element={<Signup></Signup>}></Route>
-
+        <Route path='/service/:serviceId' element={<ServiceDetail></ServiceDetail>}></Route>
       </Routes>
       <Footer></Footer>
     </div>
