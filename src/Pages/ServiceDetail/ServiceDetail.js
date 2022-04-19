@@ -8,8 +8,8 @@ const ServiceDetail = () => {
         <div>
             <h2 className='text-center m-5'>Package {serviceId} Selected</h2>
             <div className='text-center'>
-                <Link to="/checkout">
-                    <button className='btn btn-success'>Proceed to Checkout</button>
+                <Link to="/buyPackage">
+                    <button className='btn btn-dark'>Buy the Package</button>
                 </Link>
             </div>
         </div>
