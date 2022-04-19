@@ -2,24 +2,29 @@ import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from './../../firebase.init';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import SocialLogin from './SocialLogin';
+import Loading from './../Shared/Loading/Loading';
 
 const Signup = () => {
 
     const [
         createUserWithEmailAndPassword,
         user,
-        //loading,
+        loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
     const nameRef = useRef('');
     const emailRef = useRef('');
     const passwordRef = useRef('');
     const navigate = useNavigate();
     if(user){
         navigate('/login')
+    }
+    if(loading || updating){
+        return <Loading></Loading>
     }
     const handleSignup = async (event) => {
         event.preventDefault();
@@ -28,8 +33,9 @@ const Signup = () => {
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
 
-        createUserWithEmailAndPassword(email, password);
-        console.log(name,email,password)
+        await createUserWithEmailAndPassword(email, password);
+        await updateProfile({ displayName: name });
+        navigate('/home');
     }
 
     const gotoLogin = () => {
@@ -37,7 +43,7 @@ const Signup = () => {
     }
     return (
         <div className='container w-50 mx-auto my-5'>
-            <h1>Please Signup</h1>
+            <h1  className='text-center'>Please Signup</h1>
             <Form onSubmit={handleSignup}>
                 <Form.Group className="mb-3" controlId="formBasicName">
                     <Form.Label>Name</Form.Label>
@@ -54,11 +60,11 @@ const Signup = () => {
                     <Form.Control ref={passwordRef} type="password" placeholder="Password(At least 6 character)" required />
                 </Form.Group>
 
-                <Button variant="dark" type="submit">
+                <Button variant="dark w-50 mx-auto d-block mb-2" type="submit">
                     Submit
                 </Button>
             </Form>
-            <p>If you have a account <Link to="/login" className='text-danger text-decoration-none' onClick={gotoLogin}>Goto Signup</Link></p>
+            <p className='text-center'>If you have a account <Link to="/login" className='text-primary text-decoration-none' onClick={gotoLogin}>Goto Sign in</Link></p>
             <SocialLogin></SocialLogin>
         </div>
     );
