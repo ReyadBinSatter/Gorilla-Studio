@@ -3,6 +3,7 @@ import { Button, Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from './../../firebase.init';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import SocialLogin from './SocialLogin';
 
 const Signup = () => {
 
@@ -35,7 +36,7 @@ const Signup = () => {
         navigate('/login')
     }
     return (
-        <div className='container w-50 mx-auto'>
+        <div className='container w-50 mx-auto my-5'>
             <h1>Please Signup</h1>
             <Form onSubmit={handleSignup}>
                 <Form.Group className="mb-3" controlId="formBasicName">
@@ -46,9 +47,6 @@ const Signup = () => {
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control ref={emailRef} type="email" placeholder="Enter email" required />
-                    <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
-                    </Form.Text>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -56,11 +54,12 @@ const Signup = () => {
                     <Form.Control ref={passwordRef} type="password" placeholder="Password(At least 6 character)" required />
                 </Form.Group>
 
-                <Button variant="primary" type="submit">
+                <Button variant="dark" type="submit">
                     Submit
                 </Button>
             </Form>
             <p>If you have a account <Link to="/login" className='text-danger text-decoration-none' onClick={gotoLogin}>Goto Signup</Link></p>
+            <SocialLogin></SocialLogin>
         </div>
     );
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import rbs from '../../img/profile/profile.jpg'
+import rbs from '../../img/profile/profile1.jpg'
 import './About.css';
 const About = () => {
     return (
